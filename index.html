@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,6 +18,67 @@
     <div class="container">
       <h1>Hello</h1>
       World
+    </div>
+    <script src="src/app.js"></script>
+  </body>
+</html>
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/8f012302e9.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <div class="overview">
+            <h1 id="city">City Placeholder</h1>
+            <ul>
+              <li>Last updated: <span id="date">Date Placeholder</span></li>
+              <li id="description">Description Paceholder</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="clearfix weather-temperature">
+                <img src="" alt="Weather icon" id="icon" class="float-left" />
+
+                <strong id="temperature">Temp Placeholder</strong
+                ><span class="units"> °C | °F</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <ul>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
+              </ul>
+            </div>
+          </div>
+          <div style="display: inline-flex; align-items: center">
+            <i class="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
+            <p style="margin: 0px 10px">Forecast code coming soon</p>
+          </div>
+        </div>
+        <small>
+          <a href="" target="_blank">Open-source code</a>
+          by Ana Sofia Araiza
+        </small>
+      </div>
     </div>
     <script src="src/app.js"></script>
   </body>
