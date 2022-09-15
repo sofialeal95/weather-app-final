@@ -1,28 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-
-    <title>Sofia's Weather App</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Hello</h1>
-      World
-    </div>
-    <script src="src/app.js"></script>
-  </body>
-</html>
- -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,6 +9,12 @@
       rel="stylesheet"
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yeseva+One&display=swap"
+      rel="stylesheet"
     />
     <script
       src="https://kit.fontawesome.com/8f012302e9.js"
@@ -54,27 +35,31 @@
             </ul>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <div class="weather-temperature">
-                <img src="" alt="Weather icon" id="icon" />
-                <strong id="temperature">Temp Placeholder</strong
-                ><span class="units"> °C | °F</span>
+            <div class="col">
+              <div class="d-flex weather-temperature">
+                <i class="fa-solid fa-mountain-sun weather-icon"></i>
+                <!-- <img src="" alt="Weather icon" id="icon" /> -->
+                <strong id="temperature">0</strong
+                ><span class="units"> °C | <a href="#">°F</a></span>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col">
               <ul>
                 <li>Humidity: <span id="humidity"></span>%</li>
                 <li>Wind: <span id="wind"></span> km/h</li>
               </ul>
             </div>
           </div>
-          <div style="display: inline-flex; align-items: center">
+          <div
+            style="display: inline-flex; align-items: center"
+            class="forecast-space"
+          >
             <i class="fa-solid fa-spinner fa-spin-pulse fa-2x"></i>
             <p style="margin: 0px 10px">Forecast code coming soon</p>
           </div>
         </div>
-        <small>
-          <a href="" target="_blank">Open-source code</a>
+        <small class="credits">
+          <a href="#" target="_blank">Open-source code</a>
           by Ana Sofia Araiza
         </small>
       </div>
