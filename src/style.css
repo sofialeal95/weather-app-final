@@ -26,6 +26,10 @@ li {
   list-style: none;
 }
 
+li::first-letter {
+  text-transform: capitalize;
+}
+
 .weather-app-wrapper {
   margin: 30px auto;
   max-width: 700px;
@@ -58,10 +62,6 @@ li {
 
 .overview {
   margin-bottom: 20px;
-}
-
-.capitalize-words {
-  text-transform: capitalize;
 }
 
 .weather-icon {
