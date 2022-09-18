@@ -30,26 +30,29 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-  let showCity = document.querySelector("#city");
-  let showDate = document.querySelector("#date");
-  let showDescription = document.querySelector("#description");
-  let showTemp = document.querySelector("#temperature");
-  let showHumidity = document.querySelector("#humidity");
-  let showWind = document.querySelector("#wind");
+  let cityPlaceholder = document.querySelector("#city");
+  let datePlaceholder = document.querySelector("#date");
+  let descriptionPlaceholder = document.querySelector("#description");
+  let tempPlaceholder = document.querySelector("#temperature");
+  let humidityPlaceholder = document.querySelector("#humidity");
+  let windPlaceholder = document.querySelector("#wind");
   let iconId = response.data.weather[0].icon;
   let image = document.querySelector("#weather-icon");
+
+  celsiusTemp = response.data.main.temp;
+
+  cityPlaceholder.innerHTML =
+    response.data.name + ", " + response.data.sys.country;
+  datePlaceholder.innerHTML = formatDate(response.data.dt * 1000);
+  descriptionPlaceholder.innerHTML = response.data.weather[0].description;
+  tempPlaceholder.innerHTML = Math.round(response.data.main.temp);
+  humidityPlaceholder.innerHTML = response.data.main.humidity;
+  windPlaceholder.innerHTML = Math.round(response.data.wind.speed * 3.6);
+  image.setAttribute("alt", response.data.weather[0].description);
   image.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${iconId}@2x.png`
   );
-  image.setAttribute("alt", response.data.weather[0].description);
-
-  showCity.innerHTML = response.data.name + ", " + response.data.sys.country;
-  showDate.innerHTML = formatDate(response.data.dt * 1000);
-  showDescription.innerHTML = response.data.weather[0].description;
-  showTemp.innerHTML = Math.round(response.data.main.temp);
-  showHumidity.innerHTML = response.data.main.humidity;
-  showWind.innerHTML = Math.round(response.data.wind.speed * 3.6);
 }
 
 function search(city) {
@@ -64,7 +67,31 @@ function handleInput(event) {
   search(cityInput.value);
 }
 
-search("New York");
+function displayF(event) {
+  event.preventDefault();
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  let tempPlaceholder = document.querySelector("#temperature");
+  tempPlaceholder.innerHTML = Math.round(fahrenheitTemp);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function displayC(event) {
+  event.preventDefault();
+  let tempPlaceholder = document.querySelector("#temperature");
+  tempPlaceholder.innerHTML = Math.round(celsiusTemp);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+}
+
+let celsiusTemp = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleInput);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayF);
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayC);
+
+search("New York");

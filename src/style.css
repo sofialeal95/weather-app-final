@@ -77,6 +77,11 @@ li::first-letter {
   line-height: 1;
 }
 
+.weather-temperature .active {
+  color: #3a3a3a;
+  cursor: default;
+}
+
 .units a {
   text-decoration: none;
 }
