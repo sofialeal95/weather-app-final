@@ -60,6 +60,10 @@ li {
   margin-bottom: 20px;
 }
 
+.capitalize-words {
+  text-transform: capitalize;
+}
+
 .weather-icon {
   color: darkgreen;
   font-size: 50px;

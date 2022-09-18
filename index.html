@@ -20,6 +20,7 @@
       src="https://kit.fontawesome.com/8f012302e9.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -31,7 +32,9 @@
             <h1 id="city">City Placeholder</h1>
             <ul>
               <li>Last updated: <span id="date">Date Placeholder</span></li>
-              <li id="description">Description Paceholder</li>
+              <li class="capitalize-words" id="description">
+                Description Paceholder
+              </li>
             </ul>
           </div>
           <div class="row">
@@ -39,7 +42,7 @@
               <div class="d-flex weather-temperature">
                 <i class="fa-solid fa-mountain-sun weather-icon"></i>
                 <!-- <img src="" alt="Weather icon" id="icon" /> -->
-                <strong id="temperature">0</strong
+                <strong id="temperature"></strong
                 ><span class="units"> °C | <a href="#">°F</a></span>
               </div>
             </div>
