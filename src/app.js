@@ -36,6 +36,14 @@ function displayTemperature(response) {
   let showTemp = document.querySelector("#temperature");
   let showHumidity = document.querySelector("#humidity");
   let showWind = document.querySelector("#wind");
+  let iconId = response.data.weather[0].icon;
+  let image = document.createElement("img");
+  image.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconId}@2x.png`
+  );
+  image.setAttribute("alt", response.data.weather[0].description);
+  image.setAttribute("class", "weather-icon");
 
   showCity.innerHTML = response.data.name + ", " + response.data.sys.country;
   showDate.innerHTML = formatDate(response.data.dt * 1000);
@@ -43,6 +51,7 @@ function displayTemperature(response) {
   showTemp.innerHTML = Math.round(response.data.main.temp);
   showHumidity.innerHTML = response.data.main.humidity;
   showWind.innerHTML = Math.round(response.data.wind.speed * 3.6);
+  document.querySelector("#image").appendChild(image);
 }
 
 let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";

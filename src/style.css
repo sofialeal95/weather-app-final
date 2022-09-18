@@ -64,10 +64,12 @@ li::first-letter {
   margin-bottom: 20px;
 }
 
+.col {
+  padding-left: 0px;
+}
+
 .weather-icon {
-  color: darkgreen;
-  font-size: 50px;
-  margin-right: 12px;
+  width: 65px;
 }
 
 .weather-temperature strong {
