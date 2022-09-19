@@ -56,7 +56,6 @@ function displayTemperature(response) {
   if (country === "US") {
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
-    console.log(latitude);
     defineCoord(latitude, longitude);
   } else {
     getCountryName(response.data.sys.country, response.data.name);
