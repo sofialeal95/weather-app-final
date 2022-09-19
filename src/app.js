@@ -29,8 +29,20 @@ function formatDate(timestamp) {
   return displayDate;
 }
 
+function displaylocation(response) {
+  let cityPlaceholder = document.querySelector("#city");
+  cityPlaceholder.innerHTML =
+    response.data[0].name + ", " + response.data[0].state;
+}
+
+function defineCoord(lat, lon) {
+  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
+  let apiURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+  axios.get(apiURL).then(displaylocation);
+}
+
 function displayTemperature(response) {
-  // let cityPlaceholder = document.querySelector("#city");
+  let cityPlaceholder = document.querySelector("#city");
   let datePlaceholder = document.querySelector("#date");
   let descriptionPlaceholder = document.querySelector("#description");
   let tempPlaceholder = document.querySelector("#temperature");
@@ -39,8 +51,8 @@ function displayTemperature(response) {
   let iconId = response.data.weather[0].icon;
   let image = document.querySelector("#weather-icon");
   celsiusTemp = response.data.main.temp;
-
   let country = response.data.sys.country;
+
   if (country === "US") {
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
@@ -68,21 +80,6 @@ function getCountryName(countryCode, city) {
   let country = isoCountries[countryCode];
 
   cityPlaceholder.innerHTML = city + ", " + country;
-}
-
-function displaylocation(response) {
-  let cityPlaceholder = document.querySelector("#city");
-  /*   cityPlaceholder.innerHTML =
-    response.data.name + ", " + response.data.sys.country; */
-  cityPlaceholder.innerHTML =
-    response.data[0].name + ", " + response.data[0].state;
-  console.log(response.data);
-}
-
-function defineCoord(lat, lon) {
-  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
-  let apiURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
-  axios.get(apiURL).then(displaylocation);
 }
 
 function search(city) {
