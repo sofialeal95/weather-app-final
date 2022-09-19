@@ -37,7 +37,7 @@ function displaylocation(response) {
 
 function defineCoord(lat, lon) {
   let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
-  let apiURL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+  let apiURL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
   axios.get(apiURL).then(displaylocation);
 }
 
@@ -56,6 +56,7 @@ function displayTemperature(response) {
   if (country === "US") {
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
+    console.log(latitude);
     defineCoord(latitude, longitude);
   } else {
     getCountryName(response.data.sys.country, response.data.name);
