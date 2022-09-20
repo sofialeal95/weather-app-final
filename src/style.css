@@ -86,8 +86,32 @@ li::first-letter {
   text-decoration: none;
 }
 
-.forecast-space {
-  margin-top: 15px;
+.weather-forecast {
+  margin-top: 20px;
+}
+
+.forecast-day {
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+}
+
+.forecast-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.forecast-temp {
+  font-size: 13px;
+  text-align: center;
+}
+
+.high-temp-forecast {
+  color: #3a3a3a;
+}
+
+.low-temp-forecast {
+  color: #777777;
 }
 
 .credits {
