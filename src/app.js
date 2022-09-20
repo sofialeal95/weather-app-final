@@ -29,6 +29,34 @@ function formatDate(timestamp) {
   return displayDate;
 }
 
+function displayForecast() {
+  let forecastPlaceholder = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+                  <div class="forecast-day">${day}</div>
+                  <img
+                    src="http://openweathermap.org/img/wn/01n@2x.png"
+                    alt=""
+                    width="40px"
+                    class="forecast-icon"
+                  />
+                  <div class="forecast-temp">
+                    <span class="high-temp-forecast">0</span> /
+                    <span class="low-temp-forecast">40</span>
+                  </div>
+                </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastPlaceholder.innerHTML = forecastHTML;
+}
+
 function displaylocation(response) {
   let cityPlaceholder = document.querySelector("#city");
   cityPlaceholder.innerHTML =
@@ -50,8 +78,8 @@ function displayTemperature(response) {
   let windPlaceholder = document.querySelector("#wind");
   let iconId = response.data.weather[0].icon;
   let image = document.querySelector("#weather-icon");
-  celsiusTemp = response.data.main.temp;
   let country = response.data.sys.country;
+  celsiusTemp = response.data.main.temp;
 
   if (country === "US") {
     let latitude = response.data.coord.lat;
@@ -60,7 +88,7 @@ function displayTemperature(response) {
   } else {
     getCountryName(response.data.sys.country, response.data.name);
     /* cityPlaceholder.innerHTML =
-      response.data.name + ", " + response.data.sys.country; */
+    response.data.name + ", " + response.data.sys.country; */
   }
 
   datePlaceholder.innerHTML = formatDate(response.data.dt * 1000);
@@ -372,3 +400,4 @@ let isoCountries = {
 };
 
 search("Paris");
+displayForecast();
