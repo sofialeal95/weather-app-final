@@ -29,34 +29,51 @@ function formatDate(timestamp) {
   return displayDate;
 }
 
+function forecastDayFormat(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastPlaceholder = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-                  <div class="forecast-day">${day}</div>
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 7 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+                  <div class="forecast-day">${forecastDayFormat(
+                    forecastDay.dt
+                  )}</div>
                   <img
-                    src="https://openweathermap.org/img/wn/01n@2x.png"
+                    src="media/openweathermap/${
+                      forecastDay.weather[0].icon
+                    }.svg"
                     alt=""
                     width="40px"
                     class="forecast-icon"
                   />
                   <div class="forecast-temp">
-                    <span class="high-temp-forecast">0</span> /
-                    <span class="low-temp-forecast">40</span>
+                    <span class="high-temp-forecast">${Math.round(
+                      forecastDay.temp.max
+                    )}</span> /
+                    <span class="low-temp-forecast">${Math.round(
+                      forecastDay.temp.min
+                    )}</span>
                   </div>
                 </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
 
   forecastPlaceholder.innerHTML = forecastHTML;
-
-  console.log(response.data);
 }
 
 function getForecast(lat, lon) {
@@ -105,10 +122,7 @@ function displayTemperature(response) {
   humidityPlaceholder.innerHTML = response.data.main.humidity;
   windPlaceholder.innerHTML = Math.round(response.data.wind.speed * 3.6);
   image.setAttribute("alt", response.data.weather[0].description);
-  image.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${iconId}@2x.png`
-  );
+  image.setAttribute("src", `media/openweathermap/${iconId}.svg`);
 
   getForecast(latitude, longitude);
 }
@@ -410,4 +424,6 @@ let isoCountries = {
 };
 
 search("Paris");
-displayForecast();
+
+/*weather icon credits:
+Copyright (c) 2020-2021 Bas Milius */
