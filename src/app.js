@@ -29,7 +29,7 @@ function formatDate(timestamp) {
   return displayDate;
 }
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastPlaceholder = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -55,6 +55,14 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
 
   forecastPlaceholder.innerHTML = forecastHTML;
+
+  console.log(response.data);
+}
+
+function getForecast(lat, lon) {
+  let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
+  let apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
 }
 
 function displaylocation(response) {
@@ -80,10 +88,10 @@ function displayTemperature(response) {
   let image = document.querySelector("#weather-icon");
   let country = response.data.sys.country;
   celsiusTemp = response.data.main.temp;
+  let latitude = response.data.coord.lat;
+  let longitude = response.data.coord.lon;
 
   if (country === "US") {
-    let latitude = response.data.coord.lat;
-    let longitude = response.data.coord.lon;
     defineCoord(latitude, longitude);
   } else {
     getCountryName(response.data.sys.country, response.data.name);
@@ -99,8 +107,10 @@ function displayTemperature(response) {
   image.setAttribute("alt", response.data.weather[0].description);
   image.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${iconId}@2x.png`
+    `https://openweathermap.org/img/wn/${iconId}@2x.png`
   );
+
+  getForecast(latitude, longitude);
 }
 
 function getCountryName(countryCode, city) {
