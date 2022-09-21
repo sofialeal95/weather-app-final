@@ -40,7 +40,7 @@ function displayForecast(response) {
       `<div class="col-2">
                   <div class="forecast-day">${day}</div>
                   <img
-                    src="http://openweathermap.org/img/wn/01n@2x.png"
+                    src="https://openweathermap.org/img/wn/01n@2x.png"
                     alt=""
                     width="40px"
                     class="forecast-icon"
