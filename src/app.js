@@ -78,7 +78,8 @@ function displayForecast(response) {
 
 function getForecast(lat, lon) {
   let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
-  let apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let unit = "metric";
+  let apiURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiURL).then(displayForecast);
 }
 
@@ -132,9 +133,9 @@ function getCountryName(countryCode, city) {
   cityPlaceholder.innerHTML = city + ", " + country;
 }
 
-function search(city) {
-  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city, unit) {
+  let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   /*   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active"); */
   axios.get(apiURL).then(displayTemperature);
@@ -146,32 +147,58 @@ function handleInput(event) {
   search(cityInput.value);
 }
 
-/* function displayF(event) {
+function convertTempCToF(value) {
+  return Math.round((value * 9) / 5 + 32);
+}
+
+function displayF(event) {
   event.preventDefault();
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   let tempPlaceholder = document.querySelector("#temperature");
+  let highTemp = document.querySelectorAll(".high-temp-forecast");
+  let lowTemp = document.querySelectorAll(".low-temp-forecast");
   tempPlaceholder.innerHTML = Math.round(fahrenheitTemp);
+  highTemp.forEach(function (max) {
+    max.innerText = convertTempCToF(max.innerText);
+  });
+  lowTemp.forEach(function (min) {
+    min.innerText = convertTempCToF(min.innerText);
+  });
+
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+}
+
+function convertTempFToC(value) {
+  return Math.round((value - 32) / 1.8);
 }
 
 function displayC(event) {
   event.preventDefault();
   let tempPlaceholder = document.querySelector("#temperature");
+  let highTemp = document.querySelectorAll(".high-temp-forecast");
+  let lowTemp = document.querySelectorAll(".low-temp-forecast");
   tempPlaceholder.innerHTML = Math.round(celsiusTemp);
+  highTemp.forEach(function (max) {
+    max.innerText = convertTempFToC(max.innerText);
+  });
+  lowTemp.forEach(function (min) {
+    min.innerText = convertTempFToC(min.innerText);
+  });
+
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
 }
 
-let celsiusTemp = null; */
+let celsiusTemp = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleInput);
 
-/* let fahrenheitLink = document.querySelector("#fahrenheit-link");
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayF);
 let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayC); */
+celsiusLink.addEventListener("click", displayC);
 
 let isoCountries = {
   AF: "Afghanistan",
@@ -421,7 +448,7 @@ let isoCountries = {
   ZW: "Zimbabwe",
 };
 
-search("Paris");
+search("Orlando,fl,us", "metric");
 
 /*weather icon credits:
 Copyright (c) 2020-2021 Bas Milius */
