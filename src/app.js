@@ -112,8 +112,6 @@ function displayTemperature(response) {
     defineCoord(latitude, longitude);
   } else {
     getCountryName(response.data.sys.country, response.data.name);
-    /* cityPlaceholder.innerHTML =
-    response.data.name + ", " + response.data.sys.country; */
   }
 
   datePlaceholder.innerHTML = formatDate(response.data.dt * 1000);
@@ -137,8 +135,8 @@ function getCountryName(countryCode, city) {
 function search(city) {
   let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
+  /*   fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active"); */
   axios.get(apiURL).then(displayTemperature);
 }
 
@@ -148,7 +146,7 @@ function handleInput(event) {
   search(cityInput.value);
 }
 
-function displayF(event) {
+/* function displayF(event) {
   event.preventDefault();
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   let tempPlaceholder = document.querySelector("#temperature");
@@ -165,15 +163,15 @@ function displayC(event) {
   celsiusLink.classList.add("active");
 }
 
-let celsiusTemp = null;
+let celsiusTemp = null; */
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleInput);
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
+/* let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayF);
 let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayC);
+celsiusLink.addEventListener("click", displayC); */
 
 let isoCountries = {
   AF: "Afghanistan",

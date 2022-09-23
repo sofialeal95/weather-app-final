@@ -2,8 +2,8 @@ body {
   font-family: "Poppins", arial, sans-serif;
   color: #3a3a3a;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
     ),
     url(../media/background-pic.jpg);
   background-attachment: fixed, fixed;
@@ -108,6 +108,7 @@ li::first-letter {
 
 .high-temp-forecast {
   color: #3a3a3a;
+  font-weight: 600;
 }
 
 .low-temp-forecast {
