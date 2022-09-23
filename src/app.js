@@ -160,7 +160,6 @@ function displayF(event) {
   let clickC = document.querySelector(".celsius-link");
   clickC.disabled = false;
   tempPlaceholder.innerHTML = Math.round(fahrenheitTemp);
-  console.log(fahrenheitTemp);
   highTemp.forEach(function (max) {
     max.innerText = convertTempCToF(max.innerText);
   });
@@ -186,7 +185,6 @@ function displayC(event) {
   let clickC = document.querySelector(".celsius-link");
   clickC.disabled = true;
   tempPlaceholderA.innerHTML = Math.round(celsiusTemp);
-  console.log(celsiusTemp);
   highTemp.forEach(function (max) {
     max.innerText = convertTempFToC(max.innerText);
   });
