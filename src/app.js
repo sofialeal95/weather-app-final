@@ -1,21 +1,38 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours > 12) {
-    hours = hours - 12;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+function formatDate(timezone) {
+  let currentDate = new Date();
+  console.log(currentDate);
+
+  let utcOffset = currentDate.getTimezoneOffset();
+  currentDate.setMinutes(currentDate.getMinutes() + utcOffset);
+  console.log(currentDate);
+
+  let locationOffset = timezone * 60;
+  currentDate.setMinutes(currentDate.getMinutes() + locationOffset);
+  console.log(currentDate);
+
+  let hours = currentDate.getHours();
+
   let dayTime = "";
-  if (date.getHours() > 12) {
+  if (hours > 11) {
     dayTime = "PM";
   } else {
     dayTime = "AM";
   }
 
-  let dayIndex = date.getDay();
+  if (hours > 12) {
+    hours = hours - 12;
+  } else {
+    if (hours === 0) {
+      hours = 12;
+    }
+  }
+
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let dayIndex = currentDate.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -25,6 +42,7 @@ function formatDate(timestamp) {
     "Friday",
     "Saturday",
   ];
+
   let displayDate = `${days[dayIndex]} ${hours}:${minutes} ${dayTime}`;
   return displayDate;
 }
@@ -113,8 +131,7 @@ function displayTemperature(response) {
   } else {
     getCountryName(response.data.sys.country, response.data.name);
   }
-
-  datePlaceholder.innerHTML = formatDate(response.data.dt * 1000);
+  datePlaceholder.innerHTML = formatDate(response.data.timezone / 3600);
   descriptionPlaceholder.innerHTML = response.data.weather[0].description;
   tempPlaceholder.innerHTML = Math.round(celsiusTemp);
   humidityPlaceholder.innerHTML = response.data.main.humidity;
@@ -454,7 +471,7 @@ let isoCountries = {
   ZW: "Zimbabwe",
 };
 
-search("Orlando,fl,us");
+search("dallas,tx,us");
 
 /*weather icon credits:
 Copyright (c) 2020-2021 Bas Milius */
