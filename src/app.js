@@ -1,14 +1,9 @@
 function formatDate(timezone) {
   let currentDate = new Date();
-  console.log(currentDate);
-
   let utcOffset = currentDate.getTimezoneOffset();
   currentDate.setMinutes(currentDate.getMinutes() + utcOffset);
-  console.log(currentDate);
-
   let locationOffset = timezone * 60;
   currentDate.setMinutes(currentDate.getMinutes() + locationOffset);
-  console.log(currentDate);
 
   let hours = currentDate.getHours();
 
